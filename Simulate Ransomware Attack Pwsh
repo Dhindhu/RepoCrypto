@@ -1,0 +1,4 @@
+$strDir=""
+GCI $strDir| Remove-Item -Force
+1..225|%{$strPath=$strDir+$_+".txt";"something"|Out-File $strPath|Out-Null}
+Measure-Command{1..150|%{$strPath=$strDir+"$_"+".txt";$strNewPath=$strPath+".chng";"changed"|Out-File -Append $strPath;Rename-Item -Path $strPath -NewName ("$_"+".chng.txt")}}
